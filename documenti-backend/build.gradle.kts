@@ -8,7 +8,9 @@ project.extra.set("versions", mapOf(
         "jackson" to "2.9.9",
         "kotlin" to "1.2.71",
         "logback" to "1.2.3",
-        "slf4j" to "1.7.26"
+        "slf4j" to "1.7.26",
+        "pdf-builder" to "1.3.0",
+        "jjwt" to "0.9.1"
 ))
 
 plugins {
@@ -37,6 +39,7 @@ repositories {
     mavenCentral()
     mavenLocal()
     gradlePluginPortal()
+    maven(url = "http://repo.spring.io/plugins-release/")
 }
 
 dependencies {
@@ -44,7 +47,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-batch")
     implementation("org.springframework.boot:spring-boot-starter-mail")
     implementation("org.springframework.boot:spring-boot-starter-quartz")
-    //implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-websocket")
@@ -71,6 +74,9 @@ dependencies {
     compile("org.slf4j:slf4j-api:${versions["slf4j"]}")
     compile("org.slf4j:jul-to-slf4j:${versions["slf4j"]}")
     compile("org.slf4j:log4j-over-slf4j:${versions["slf4j"]}")
+
+    compile("com.github.timrs2998:pdf-builder:${versions["pdf-builder"]}")
+    compile("io.jsonwebtoken:jjwt:${versions["jjwt"]}")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.batch:spring-batch-test")

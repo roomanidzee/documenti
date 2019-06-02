@@ -5,3 +5,6 @@ databaseChangeLog:
 
   - include:
       file: migrations/initial/create-main-tables-1.yml
+
+  - include:
+      file:

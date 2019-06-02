@@ -1,12 +1,12 @@
 package com.romanidze.documenti.services.interfaces
 
-import com.romanidze.documenti.dto.UserDTO
+import com.romanidze.documenti.dto.UserAdminDTO
 
 interface UserService {
 
-    fun saveUser(userDTO: UserDTO)
-    fun getAllUsers(): List<UserDTO>
-    fun updateUser(userDTO: UserDTO)
+    fun saveUser(userAdminDTO: UserAdminDTO)
+    fun getAllUsers(): List<UserAdminDTO>
+    fun updateUser(userAdminDTO: UserAdminDTO)
     fun deleteUser(id: Long)
 
 }

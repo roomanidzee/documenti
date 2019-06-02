@@ -1,0 +1,132 @@
+databaseChangeLog:
+  - preConditions:
+      - runningAs:
+          username: documenti_user
+
+  - changeSet:
+
+      id: add_role_and_state
+      author: andrey_romanov
+
+      changes:
+
+        - addColumn:
+
+            columns:
+
+              - column:
+
+                  name: user_role
+
+                  type: VARCHAR(20)
+
+            schemaName: public
+            tableName: users
+
+        - addColumn:
+
+            columns:
+
+              - column:
+
+                  name: user_state
+
+                  type: VARCHAR(20)
+
+            schemaName: public
+            tableName: users
+
+  - changeSet:
+
+      id: create_profile_table
+      author: andrey_romanov
+
+      changes:
+
+        - createTable:
+
+            tableName: profiles
+
+            columns:
+
+              - column:
+
+                  name: id
+
+                  type: int
+
+                  autoIncrement: true
+
+                  constraints:
+
+                    primaryKey: true
+
+                    nullable: false
+
+              - column:
+
+                  name: user_id
+
+                  type: int
+
+                  constraints:
+
+                    unique: true
+
+              - column:
+
+                  name: surname
+
+                  type: VARCHAR(100)
+
+              - column:
+
+                  name: name
+
+                  type: VARCHAR(100)
+
+              - column:
+
+                  name: patronymic
+
+                  type: VARCHAR(100)
+
+              - column:
+
+                  name: email
+
+                  type: VARCHAR(100)
+
+                  constraints:
+
+                    unique: true
+
+              - column:
+
+                  name: phone_number
+
+                  type: VARCHAR(100)
+
+                  constraints:
+
+                    unique: true
+
+              - addForeignKeyConstraint:
+
+                  baseColumnNames: user_id
+
+                  baseTableName: profiles
+
+                  constraintName: fk_profile_user
+
+                  deferrable: true
+
+                  initiallyDeferred: true
+
+                  onDelete: CASCADE
+
+                  onUpdate: RESTRICT
+
+                  referencedColumnNames: id
+
+                  referencedTableName: users

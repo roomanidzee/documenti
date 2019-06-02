@@ -13,14 +13,16 @@ import org.apache.ibatis.annotations.Param
 @Mapper
 interface UserDBMapper {
 
-    @Insert("INSERT INTO users(username, password) VALUES(#{username}, #{password})")
+    @Insert("INSERT INTO users(username, password, role, state) " +
+            "VALUES(#{username}, #{password}, #{role}, #{state})")
     @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
     fun save(user: User)
 
     @Select("SELECT * FROM users")
     fun findAll(): List<User>
 
-    @Update("UPDATE users SET username = #{username}, password = #{password} WHERE id = #{id}")
+    @Update("UPDATE users SET username = #{username}, password = #{password}, " +
+            "role = #{role}, state = #{state} WHERE id = #{id}")
     fun update(user: User)
 
     @Delete("DELETE FROM users WHERE id = #{id}")

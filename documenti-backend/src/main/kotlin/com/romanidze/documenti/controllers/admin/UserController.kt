@@ -1,7 +1,7 @@
-package com.romanidze.documenti.controllers
+package com.romanidze.documenti.controllers.admin
 
 import com.romanidze.documenti.dto.MessageResponseDTO
-import com.romanidze.documenti.dto.UserDTO
+import com.romanidze.documenti.dto.UserAdminDTO
 import com.romanidze.documenti.services.interfaces.UserService
 
 import org.springframework.http.ResponseEntity
@@ -16,27 +16,27 @@ import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.bind.annotation.PathVariable
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/admin/users")
 class UserController(private val userService: UserService) {
 
     @PostMapping("/create")
-    fun createUser(@RequestBody userDTO: UserDTO): ResponseEntity<MessageResponseDTO>{
+    fun createUser(@RequestBody userAdminDTO: UserAdminDTO): ResponseEntity<MessageResponseDTO>{
 
-        this.userService.saveUser(userDTO)
+        this.userService.saveUser(userAdminDTO)
 
         return ResponseEntity.ok(MessageResponseDTO(message="Пользователь сохранён"))
 
     }
 
     @GetMapping("/all")
-    fun showUsers(): ResponseEntity<List<UserDTO>> {
+    fun showUsers(): ResponseEntity<List<UserAdminDTO>> {
         return ResponseEntity.ok(this.userService.getAllUsers())
     }
 
     @PutMapping("/update")
-    fun updateUser(@RequestBody userDTO: UserDTO): ResponseEntity<MessageResponseDTO> {
+    fun updateUser(@RequestBody userAdminDTO: UserAdminDTO): ResponseEntity<MessageResponseDTO> {
 
-        this.userService.updateUser(userDTO)
+        this.userService.updateUser(userAdminDTO)
 
         return ResponseEntity.ok(MessageResponseDTO(message="Пользователь обновлён"))
 
