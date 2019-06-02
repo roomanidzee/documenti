@@ -1,2 +1,34 @@
+spring:
+
+  application:
+
+    name: documenti-backend
+
+  datasource:
+
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/documenti_db
+    username: documenti_user
+    password: documenti_pass
+
+    tomcat:
+
+      test-on-borrow: true
+      validation-query: SELECT 1
+
+  liquibase:
+    change-log: classpath:/migrations/changelog-master.yml
+    database-change-log-lock-table: database_change_log_locking
+    database-change-log-table: database_change_log
+
 server:
+
   port: 8080
+
+  servlet:
+
+    context-path: /api
+
+logging:
+
+  config: classpath:logging/logback-spring.xml

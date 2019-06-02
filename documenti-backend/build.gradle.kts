@@ -6,7 +6,9 @@ project.extra.set("versions", mapOf(
         "postgresql" to "42.2.5",
         "liquibase" to "3.6.3",
         "jackson" to "2.9.9",
-        "kotlin" to "1.2.71"
+        "kotlin" to "1.2.71",
+        "logback" to "1.2.3",
+        "slf4j" to "1.7.26"
 ))
 
 plugins {
@@ -42,10 +44,11 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-batch")
     implementation("org.springframework.boot:spring-boot-starter-mail")
     implementation("org.springframework.boot:spring-boot-starter-quartz")
-    implementation("org.springframework.boot:spring-boot-starter-security")
+    //implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-websocket")
+    implementation("org.springframework.boot:spring-boot-starter-jdbc")
 
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:${versions["jackson"]}")
 
@@ -61,6 +64,13 @@ dependencies {
     kapt("org.mapstruct:mapstruct-processor:${versions["mapstruct"]}")
 
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
+
+    compile("ch.qos.logback:logback-classic:${versions["logback"]}")
+    compile("ch.qos.logback:logback-access:${versions["logback"]}")
+
+    compile("org.slf4j:slf4j-api:${versions["slf4j"]}")
+    compile("org.slf4j:jul-to-slf4j:${versions["slf4j"]}")
+    compile("org.slf4j:log4j-over-slf4j:${versions["slf4j"]}")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.batch:spring-batch-test")
