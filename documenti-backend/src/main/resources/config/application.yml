@@ -29,6 +29,14 @@ server:
 
     context-path: /api
 
+jwt:
+
+  properties:
+
+    header: Authorization
+    secret-key: fnreskjdfn4p3ithn3q[04tfraf
+    expires-at: 600
+
 logging:
 
   config: classpath:logging/logback-spring.xml

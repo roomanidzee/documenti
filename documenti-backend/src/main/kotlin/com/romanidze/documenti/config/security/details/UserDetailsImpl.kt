@@ -2,16 +2,13 @@ package com.romanidze.documenti.config.security.details
 
 import com.romanidze.documenti.config.security.enums.Role
 import com.romanidze.documenti.config.security.enums.UserState
-import com.romanidze.documenti.domain.User
+import com.romanidze.documenti.domain.postgres.User
+
 import org.springframework.security.core.GrantedAuthority
+import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 
-class UserDetailsImpl(val user: User?): UserDetails {
-
-    //private var id: Long
-    //private var role: String
-    //private var state: String
-    //private var username: String
+class UserDetailsImpl(private var user: User?): UserDetails {
 
     constructor(id: Long, role: String, state: String, username: String) : this(null) {
 
@@ -31,33 +28,44 @@ class UserDetailsImpl(val user: User?): UserDetails {
 
        val stateCondition: Boolean = stateArray.any {item -> item == state}
 
+       if(!roleCondition){
+           throw IllegalArgumentException("Роли $role не существует")
+       }
+
+       if(!stateCondition){
+           throw IllegalArgumentException("Состояния $state не существует")
+       }
+
+       this.user = User(id = id, username = username, role = role, state = state, password = "")
+
     }
 
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val grantedAuthority = SimpleGrantedAuthority(this.user!!.role)
+        return mutableListOf(grantedAuthority)
     }
 
     override fun isEnabled(): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return UserState.valueOf(this.user!!.state!!) == UserState.CONFIRMED
     }
 
     override fun getUsername(): String {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return this.user!!.username!!
     }
 
     override fun isCredentialsNonExpired(): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return UserState.valueOf(this.user!!.state!!) != UserState.NOT_CONFIRMED
     }
 
     override fun getPassword(): String {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return this.user!!.password!!
     }
 
     override fun isAccountNonExpired(): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return UserState.valueOf(this.user!!.state!!) != UserState.DELETED
     }
 
     override fun isAccountNonLocked(): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return UserState.valueOf(this.user!!.state!!) != UserState.BANNED
     }
 }

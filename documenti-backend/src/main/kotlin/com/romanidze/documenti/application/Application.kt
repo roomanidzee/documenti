@@ -6,7 +6,6 @@ import org.springframework.context.annotation.ComponentScan
 
 @SpringBootApplication
 @ComponentScan(basePackages = ["com.romanidze.documenti.config",
-                               "com.romanidze.documenti.components",
                                "com.romanidze.documenti.controllers",
                                "com.romanidze.documenti.mappers",
                                "com.romanidze.documenti.services"])

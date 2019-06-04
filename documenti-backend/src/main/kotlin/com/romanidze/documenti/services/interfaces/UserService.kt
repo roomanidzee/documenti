@@ -1,6 +1,6 @@
 package com.romanidze.documenti.services.interfaces
 
-import com.romanidze.documenti.dto.UserAdminDTO
+import com.romanidze.documenti.dto.admin.UserAdminDTO
 
 interface UserService {
 

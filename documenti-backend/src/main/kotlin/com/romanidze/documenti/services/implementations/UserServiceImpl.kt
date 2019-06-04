@@ -1,7 +1,7 @@
 package com.romanidze.documenti.services.implementations
 
-import com.romanidze.documenti.domain.User
-import com.romanidze.documenti.dto.UserAdminDTO
+import com.romanidze.documenti.domain.postgres.User
+import com.romanidze.documenti.dto.admin.UserAdminDTO
 import com.romanidze.documenti.mappers.mapstruct.UserMapper
 import com.romanidze.documenti.mappers.mybatis.UserDBMapper
 import com.romanidze.documenti.services.interfaces.UserService

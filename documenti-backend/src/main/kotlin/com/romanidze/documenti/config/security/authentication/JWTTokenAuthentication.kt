@@ -4,11 +4,10 @@ import org.springframework.security.core.Authentication
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 
-class JWTTokenAuthentication: Authentication {
+class JWTTokenAuthentication(private val token: String?): Authentication {
 
     private var isAuthenticated: Boolean = false
     private var userDetails: UserDetails? = null
-    private var token: String? = null
 
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
         return this.userDetails!!.authorities
@@ -37,4 +36,9 @@ class JWTTokenAuthentication: Authentication {
     override fun getDetails(): UserDetails? {
         return this.userDetails
     }
+
+    fun setUserDetails(userDetails: UserDetails){
+        this.userDetails = userDetails
+    }
+
 }

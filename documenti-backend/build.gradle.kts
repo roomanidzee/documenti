@@ -66,7 +66,8 @@ dependencies {
     compile("org.mapstruct:mapstruct:${versions["mapstruct"]}")
     kapt("org.mapstruct:mapstruct-processor:${versions["mapstruct"]}")
 
-    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
+    compile("org.springframework.boot:spring-boot-configuration-processor")
+    kapt("org.springframework.boot:spring-boot-configuration-processor")
 
     compile("ch.qos.logback:logback-classic:${versions["logback"]}")
     compile("ch.qos.logback:logback-access:${versions["logback"]}")

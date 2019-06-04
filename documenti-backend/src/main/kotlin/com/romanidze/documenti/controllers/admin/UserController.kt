@@ -1,7 +1,7 @@
 package com.romanidze.documenti.controllers.admin
 
-import com.romanidze.documenti.dto.MessageResponseDTO
-import com.romanidze.documenti.dto.UserAdminDTO
+import com.romanidze.documenti.dto.utils.MessageResponseDTO
+import com.romanidze.documenti.dto.admin.UserAdminDTO
 import com.romanidze.documenti.services.interfaces.UserService
 
 import org.springframework.http.ResponseEntity
@@ -24,7 +24,7 @@ class UserController(private val userService: UserService) {
 
         this.userService.saveUser(userAdminDTO)
 
-        return ResponseEntity.ok(MessageResponseDTO(message="Пользователь сохранён"))
+        return ResponseEntity.ok(MessageResponseDTO(message = "Пользователь сохранён"))
 
     }
 
@@ -38,7 +38,7 @@ class UserController(private val userService: UserService) {
 
         this.userService.updateUser(userAdminDTO)
 
-        return ResponseEntity.ok(MessageResponseDTO(message="Пользователь обновлён"))
+        return ResponseEntity.ok(MessageResponseDTO(message = "Пользователь обновлён"))
 
     }
 
@@ -47,7 +47,7 @@ class UserController(private val userService: UserService) {
 
         this.userService.deleteUser(id)
 
-        return ResponseEntity.ok(MessageResponseDTO(message="Пользователь с id $id удалён"))
+        return ResponseEntity.ok(MessageResponseDTO(message = "Пользователь с id $id удалён"))
 
     }
 

@@ -1,6 +1,6 @@
 package com.romanidze.documenti.mappers.mybatis
 
-import com.romanidze.documenti.domain.Profile
+import com.romanidze.documenti.domain.postgres.Profile
 
 import org.apache.ibatis.annotations.Insert
 import org.apache.ibatis.annotations.Select

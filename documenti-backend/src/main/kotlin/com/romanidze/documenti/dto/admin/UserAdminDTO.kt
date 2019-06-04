@@ -1,4 +1,4 @@
-package com.romanidze.documenti.dto
+package com.romanidze.documenti.dto.admin
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 

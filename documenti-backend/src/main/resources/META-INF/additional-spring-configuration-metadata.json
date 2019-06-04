@@ -1,0 +1,29 @@
+{
+  "groups": [
+    {
+      "name": "jwt.properties",
+      "type": "com.romanidze.documenti.config.security.properties.JWTProperties",
+      "sourceType": "com.romanidze.documenti.config.security.properties.JWTProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "jwt.properties.header",
+      "type": "java.lang.String",
+      "description": "Название заголовка с токеном.",
+      "sourceType": "com.romanidze.documenti.config.security.properties.JWTProperties"
+    },
+    {
+      "name": "jwt.properties.secret-key",
+      "type": "java.lang.String",
+      "description": "Ключ подписи JWT - токена.",
+      "sourceType": "com.romanidze.documenti.config.security.properties.JWTProperties"
+    },
+    {
+      "name": "jwt.properties.expires-at",
+      "type": "java.lang.String",
+      "description": "Срок годности JWT - токена (в секундах).",
+      "sourceType": "com.romanidze.documenti.config.security.properties.JWTProperties"
+    }
+  ]
+}

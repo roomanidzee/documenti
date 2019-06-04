@@ -1,8 +1,8 @@
 package com.romanidze.documenti.mappers.mapstruct
 
 import com.romanidze.documenti.config.mapstruct.MapStructConfig
-import com.romanidze.documenti.domain.Profile
-import com.romanidze.documenti.dto.ProfileDTO
+import com.romanidze.documenti.domain.postgres.Profile
+import com.romanidze.documenti.dto.profile.ProfileDTO
 
 import org.mapstruct.Mapper
 
