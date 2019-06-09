@@ -12,7 +12,6 @@ import org.apache.ibatis.annotations.Param
 import org.apache.ibatis.annotations.Results
 import org.apache.ibatis.annotations.Result
 
-
 @Mapper
 interface UserDBMapper {
 

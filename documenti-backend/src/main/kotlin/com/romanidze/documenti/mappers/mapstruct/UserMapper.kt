@@ -9,7 +9,7 @@ import org.mapstruct.Mapper
 @Mapper(config=MapStructConfig::class)
 interface UserMapper {
 
-    fun domainToDTO(user: User): UserAdminDTO
-    fun dtoToDomain(userAdminDTO: UserAdminDTO): User
+    fun domainToAdminDTO(user: User): UserAdminDTO
+    fun adminDTOToDomain(userAdminDTO: UserAdminDTO): User
 
 }

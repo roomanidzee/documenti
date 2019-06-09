@@ -43,7 +43,7 @@ class SecurityConfig(private val authenticationProvider: JWTTokenAuthenticationP
                 .authorizeRequests()
                 .antMatchers("/user/**", "/profile/**").hasAuthority("USER")
                 .antMatchers("/admin/**").hasAuthority("ADMIN")
-                .antMatchers("/auth/**").permitAll()
+                .antMatchers("/security/**").permitAll()
                 .and()
                 .csrf()
                 .disable()

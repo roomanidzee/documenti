@@ -1,10 +1,10 @@
-package com.romanidze.documenti.services.implementations
+package com.romanidze.documenti.services.implementations.user
 
 import com.romanidze.documenti.domain.postgres.User
 import com.romanidze.documenti.dto.admin.UserAdminDTO
 import com.romanidze.documenti.mappers.mapstruct.UserMapper
 import com.romanidze.documenti.mappers.mybatis.UserDBMapper
-import com.romanidze.documenti.services.interfaces.UserService
+import com.romanidze.documenti.services.interfaces.user.UserService
 
 import org.springframework.stereotype.Service
 
@@ -14,7 +14,7 @@ class UserServiceImpl(private val userMapper: UserMapper,
 
     override fun saveUser(userAdminDTO: UserAdminDTO) {
 
-        val user: User = this.userMapper.dtoToDomain(userAdminDTO)
+        val user: User = this.userMapper.adminDTOToDomain(userAdminDTO)
         this.userDBMapper.save(user)
 
     }
@@ -23,13 +23,13 @@ class UserServiceImpl(private val userMapper: UserMapper,
 
         val users: List<User> = this.userDBMapper.findAll()
 
-        return users.map(this.userMapper::domainToDTO)
+        return users.map(this.userMapper::domainToAdminDTO)
                     .toList()
 
     }
 
     override fun updateUser(userAdminDTO: UserAdminDTO) {
-        val user: User = this.userMapper.dtoToDomain(userAdminDTO)
+        val user: User = this.userMapper.adminDTOToDomain(userAdminDTO)
         this.userDBMapper.update(user)
     }
 

@@ -2,7 +2,7 @@ package com.romanidze.documenti.controllers.admin
 
 import com.romanidze.documenti.dto.utils.MessageResponseDTO
 import com.romanidze.documenti.dto.admin.UserAdminDTO
-import com.romanidze.documenti.services.interfaces.UserService
+import com.romanidze.documenti.services.interfaces.user.UserService
 
 import org.springframework.http.ResponseEntity
 
@@ -15,12 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.bind.annotation.PathVariable
 
+import javax.validation.Valid
+
 @RestController
 @RequestMapping("/admin/users")
 class UserController(private val userService: UserService) {
 
     @PostMapping("/create")
-    fun createUser(@RequestBody userAdminDTO: UserAdminDTO): ResponseEntity<MessageResponseDTO>{
+    fun createUser(@Valid @RequestBody userAdminDTO: UserAdminDTO): ResponseEntity<MessageResponseDTO>{
 
         this.userService.saveUser(userAdminDTO)
 
@@ -34,7 +36,7 @@ class UserController(private val userService: UserService) {
     }
 
     @PutMapping("/update")
-    fun updateUser(@RequestBody userAdminDTO: UserAdminDTO): ResponseEntity<MessageResponseDTO> {
+    fun updateUser(@Valid @RequestBody userAdminDTO: UserAdminDTO): ResponseEntity<MessageResponseDTO> {
 
         this.userService.updateUser(userAdminDTO)
 

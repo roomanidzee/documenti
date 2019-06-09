@@ -1,4 +1,4 @@
-package com.romanidze.documenti.services.interfaces
+package com.romanidze.documenti.services.interfaces.user
 
 import com.romanidze.documenti.dto.admin.UserAdminDTO
 
