@@ -11,7 +11,8 @@ project.extra.set("versions", mapOf(
         "slf4j" to "1.7.26",
         "pdf-builder" to "1.3.0",
         "jjwt" to "0.9.1",
-        "jaxb" to "2.3.1"
+        "jaxb" to "2.3.1",
+        "swagger" to "2.9.2"
 ))
 
 plugins {
@@ -81,6 +82,9 @@ dependencies {
     compile("io.jsonwebtoken:jjwt:${versions["jjwt"]}")
     
     compile("javax.xml.bind:jaxb-api:${versions["jaxb"]}")
+
+    compile("io.springfox:springfox-swagger2:${versions["swagger"]}")
+    compile("io.springfox:springfox-swagger-ui:${versions["swagger"]}")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.batch:spring-batch-test")

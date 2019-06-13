@@ -25,6 +25,8 @@ class SecurityConfig(private val authenticationProvider: JWTTokenAuthenticationP
                      private val authenticationEntryPoint: AuthenticationEntryPoint,
                      private val accessDeniedHandler: AccessDeniedHandler): WebSecurityConfigurerAdapter() {
 
+    private val SWAGGER_URLS = arrayOf("/v2/api-docs", "/configuration/**", "/swagger*/**", "/webjars/**")
+
     @Bean
     @Primary
     fun passwordEncoder(): PasswordEncoder{
@@ -44,6 +46,7 @@ class SecurityConfig(private val authenticationProvider: JWTTokenAuthenticationP
                 .antMatchers("/user/**", "/profile/**").hasAuthority("USER")
                 .antMatchers("/admin/**").hasAuthority("ADMIN")
                 .antMatchers("/security/**").permitAll()
+                .antMatchers(*SWAGGER_URLS).permitAll()
                 .and()
                 .csrf()
                 .disable()
