@@ -19,12 +19,9 @@ class UserServiceImpl(private val userMapper: UserMapper,
 
     }
 
-    override fun getAllUsers(): List<UserAdminDTO> {
+    override fun getAllUsers(): List<User> {
 
-        val users: List<User> = this.userDBMapper.findAll()
-
-        return users.map(this.userMapper::domainToAdminDTO)
-                    .toList()
+        return this.userDBMapper.findAll()
 
     }
 

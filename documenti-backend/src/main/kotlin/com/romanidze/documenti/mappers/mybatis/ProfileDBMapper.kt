@@ -15,8 +15,8 @@ import org.apache.ibatis.annotations.Result
 @Mapper
 interface ProfileDBMapper {
 
-    @Insert("INSERT INTO profiles(user_id, surname, name, patronymic, email, phone_number) " +
-            "VALUES(#{userID}, #{surname}, #{name}, #{patronymic}, #{email}, #{phoneNumber})")
+    @Insert("INSERT INTO profiles(user_id, surname, name, patronymic, email, phone_number, created_time) " +
+            "VALUES(#{userID}, #{surname}, #{name}, #{patronymic}, #{email}, #{phoneNumber}, #{createdTime})")
     @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
     fun save(profile: Profile)
 

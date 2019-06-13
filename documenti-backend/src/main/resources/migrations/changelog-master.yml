@@ -5,3 +5,6 @@ databaseChangeLog:
 
   - include:
       file: /migrations/initial/changelog-initial.yml
+
+  - include:
+      file: /migrations/final/changelog-final.yml

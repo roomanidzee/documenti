@@ -111,6 +111,12 @@ databaseChangeLog:
 
                     unique: true
 
+              - column:
+
+                  name: created_time
+
+                  type: TIMESTAMP
+
               - addForeignKeyConstraint:
 
                   baseColumnNames: user_id

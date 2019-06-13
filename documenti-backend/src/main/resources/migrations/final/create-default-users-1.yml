@@ -1,0 +1,82 @@
+databaseChangeLog:
+  - preConditions:
+      - runningAs:
+          username: documenti_user
+
+  - changeSet:
+
+      id: create_simple_user
+      author: andrey_romanov
+
+      changes:
+
+        - insert:
+
+            dbms: postgresql
+            schemaName: public
+            tableName: users
+
+            columns:
+
+              - column:
+
+                  name: username
+                  type: VARCHAR(100)
+                  value: "simple_user"
+
+              - column:
+
+                  name: password
+                  type: VARCHAR(300)
+                  value: "$2a$10$UtDTMGYbbGaT9xn7NdPI1eiiNaXhasUeHaa4UMgonIhA2ZazWdq7i" #simple_user
+
+              - column:
+
+                  name: user_role
+                  type: VARCHAR(20)
+                  value: "USER"
+
+              - column:
+
+                  name: user_state
+                  type: VARCHAR(20)
+                  value: "CONFIRMED"
+
+  - changeSet:
+
+      id: create_admin_user
+      author: andrey_romanov
+
+      changes:
+
+        - insert:
+
+            dbms: postgresql
+            schemaName: public
+            tableName: users
+
+            columns:
+
+              - column:
+
+                  name: username
+                  type: VARCHAR(100)
+                  value: "admin_user"
+
+              - column:
+
+                  name: password
+                  type: VARCHAR(300)
+                  value: "$2a$10$nWTBgQi6Q95VLWTwJ3lYwe6EWJr/XrSv8TwjpeGT33T3APnUyeUsS" #admin_user
+
+              - column:
+
+                  name: user_role
+                  type: VARCHAR(20)
+                  value: "ADMIN"
+
+              - column:
+
+                  name: user_state
+                  type: VARCHAR(20)
+                  value: "CONFIRMED"

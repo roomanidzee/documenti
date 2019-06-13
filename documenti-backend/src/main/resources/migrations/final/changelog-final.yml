@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - preConditions:
+      - runningAs:
+          username: documenti_user
+
+  - include:
+      file: /migrations/final/create-default-users-1.yml

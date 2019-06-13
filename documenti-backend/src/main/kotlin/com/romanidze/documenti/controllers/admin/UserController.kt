@@ -1,5 +1,6 @@
 package com.romanidze.documenti.controllers.admin
 
+import com.romanidze.documenti.domain.postgres.User
 import com.romanidze.documenti.dto.utils.MessageResponseDTO
 import com.romanidze.documenti.dto.admin.UserAdminDTO
 import com.romanidze.documenti.services.interfaces.user.UserService
@@ -31,7 +32,7 @@ class UserController(private val userService: UserService) {
     }
 
     @GetMapping("/all")
-    fun showUsers(): ResponseEntity<List<UserAdminDTO>> {
+    fun showUsers(): ResponseEntity<List<User>> {
         return ResponseEntity.ok(this.userService.getAllUsers())
     }
 
