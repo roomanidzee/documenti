@@ -10,7 +10,8 @@ project.extra.set("versions", mapOf(
         "logback" to "1.2.3",
         "slf4j" to "1.7.26",
         "pdf-builder" to "1.3.0",
-        "jjwt" to "0.9.1"
+        "jjwt" to "0.9.1",
+        "jaxb" to "2.3.1"
 ))
 
 plugins {
@@ -78,6 +79,8 @@ dependencies {
 
     compile("com.github.timrs2998:pdf-builder:${versions["pdf-builder"]}")
     compile("io.jsonwebtoken:jjwt:${versions["jjwt"]}")
+    
+    compile("javax.xml.bind:jaxb-api:${versions["jaxb"]}")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.batch:spring-batch-test")

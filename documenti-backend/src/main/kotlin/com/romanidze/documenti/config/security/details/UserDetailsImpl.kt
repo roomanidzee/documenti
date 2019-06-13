@@ -12,21 +12,11 @@ class UserDetailsImpl(private var user: User?): UserDetails {
 
     constructor(id: Long, role: String, state: String, username: String) : this(null) {
 
-       val roleArray = arrayOf<String>()
+       val existedRoles = enumValues<Role>().map { it.name }
+       val roleCondition: Boolean = existedRoles.any { item -> item == role }
 
-       for(i in 0..Role.values().size){
-           roleArray[i] = Role.values()[i].toString()
-       }
-
-       val roleCondition: Boolean = roleArray.any { item -> item == role }
-
-       val stateArray = arrayOf<String>()
-
-       for(i in 0..UserState.values().size){
-           stateArray[i] = UserState.values()[i].toString()
-       }
-
-       val stateCondition: Boolean = stateArray.any {item -> item == state}
+       val existedStates = enumValues<UserState>().map { it.name }
+       val stateCondition: Boolean = existedStates.any {item -> item == state}
 
        if(!roleCondition){
            throw IllegalArgumentException("Роли $role не существует")

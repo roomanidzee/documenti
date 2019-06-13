@@ -255,7 +255,9 @@ class RESTExceptionHandler: ResponseEntityExceptionHandler() {
     protected fun handleUnclassifiedException(ex: Exception, request: WebRequest): ResponseEntity<Any>{
 
         val errorMessage = "Произошла неизвестная ошибка"
-        val errorDebugMessage = "Стектрейс ошибки: ${ex.stackTrace}"
+        val errorDebugMessage = "Причина ошибки: ${ex.cause}"
+
+        ex.printStackTrace()
 
         logger.error("$errorMessage \n $errorDebugMessage")
 

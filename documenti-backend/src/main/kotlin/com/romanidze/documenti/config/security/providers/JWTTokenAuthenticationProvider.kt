@@ -36,6 +36,6 @@ class JWTTokenAuthenticationProvider(private val jwtComponent: JWTComponent): Au
     }
 
     override fun supports(authentication: Class<*>?): Boolean {
-        return JWTTokenAuthentication::class == authentication
+        return JWTTokenAuthentication::class.simpleName == authentication!!.simpleName
     }
 }

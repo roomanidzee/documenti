@@ -24,7 +24,7 @@ class AuthenticationController(private val authenticationService: Authentication
     }
 
     @PostMapping("/check_auth")
-    fun checkAuth(authentication: Authentication): ResponseEntity<TokenInfoDTO>{
+    fun checkAuth(authentication: Authentication?): ResponseEntity<TokenInfoDTO>{
         return ResponseEntity.ok(this.authenticationService.checkToken(authentication))
     }
 

@@ -4,4 +4,4 @@ databaseChangeLog:
           username: documenti_user
 
   - include:
-      file: migrations/initial/changelog-initial.yml
+      file: /migrations/initial/changelog-initial.yml
