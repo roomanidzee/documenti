@@ -4,11 +4,9 @@ import com.romanidze.documenti.dto.profile.ProfileCreationDTO
 import com.romanidze.documenti.dto.profile.ProfileDTO
 import com.romanidze.documenti.services.interfaces.profile.ProfileService
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.security.core.Authentication
+import org.springframework.web.bind.annotation.*
 
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
 import javax.validation.Valid
 
 @RestController
@@ -17,7 +15,12 @@ class ProfileController(private val profileService: ProfileService) {
 
     @PostMapping("/create")
     fun create(@Valid @RequestBody profileDTO: ProfileCreationDTO): ResponseEntity<ProfileDTO>{
-        return ResponseEntity.ok(this.profileService.createProfile(profileDTO));
+        return ResponseEntity.ok(this.profileService.createProfile(profileDTO))
+    }
+
+    @GetMapping("/show")
+    fun showProfile(authentication: Authentication?): ResponseEntity<ProfileDTO>{
+        return ResponseEntity.ok(this.profileService.retrieveProfile(authentication))
     }
 
 }

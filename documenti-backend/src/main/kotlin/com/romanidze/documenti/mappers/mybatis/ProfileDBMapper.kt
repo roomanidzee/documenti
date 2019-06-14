@@ -23,7 +23,8 @@ interface ProfileDBMapper {
     @Select("SELECT * FROM profiles")
     @Results(
         Result(column = "phone_number", property = "phoneNumber"),
-        Result(column = "user_id", property = "userID")
+        Result(column = "user_id", property = "userID"),
+        Result(column = "created_time", property = "createdTime")
     )
     fun findAll(): List<Profile>
 
@@ -33,5 +34,13 @@ interface ProfileDBMapper {
 
     @Delete("DELETE FROM profiles WHERE id = #{id}")
     fun delete(@Param("id") id: Long)
+
+    @Select("SELECT * FROM profiles WHERE user_id = #{user_id}")
+    @Results(
+            Result(column = "phone_number", property = "phoneNumber"),
+            Result(column = "user_id", property = "userID"),
+            Result(column = "created_time", property = "createdTime")
+    )
+    fun findByUserID(@Param("user_id") userID: Long): Profile
 
 }

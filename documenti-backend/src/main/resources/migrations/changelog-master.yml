@@ -7,4 +7,7 @@ databaseChangeLog:
       file: /migrations/initial/changelog-initial.yml
 
   - include:
+      file: /migrations/note/changelog-note.yml
+
+  - include:
       file: /migrations/final/changelog-final.yml

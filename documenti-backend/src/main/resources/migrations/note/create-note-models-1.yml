@@ -1,0 +1,81 @@
+databaseChangeLog:
+  - preConditions:
+      - runningAs:
+          username: documenti_user
+
+  - changeSet:
+
+      id: create_note_models
+      author: andrey_romanov
+
+      changes:
+
+        - createTable:
+
+            tableName: notes
+
+            columns:
+
+              - column:
+
+                  name: id
+
+                  type: int
+
+                  autoIncrement: true
+
+                  constraints:
+
+                    primaryKey: true
+
+                    nullable: false
+
+              - column:
+
+                  name: user_id
+
+                  type: int
+
+                  constraints:
+
+                    unique: true
+
+                    nullable: false
+
+              - column:
+
+                  name: title
+
+                  type: TEXT
+
+              - column:
+
+                  name: description
+
+                  type: TEXT
+
+              - column:
+
+                  name: created_time
+
+                  type: TIMESTAMP
+
+              - addForeignKeyConstraint:
+
+                  baseColumnNames: user_id
+
+                  baseTableName: notes
+
+                  constraintName: fk_note_profile
+
+                  deferrable: true
+
+                  initiallyDeferred: true
+
+                  onDelete: RESTRICT
+
+                  onUpdate: RESTRICT
+
+                  referencedColumnNames: id
+
+                  referencedTableName: profiles
