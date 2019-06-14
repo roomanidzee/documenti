@@ -20,7 +20,7 @@ import javax.validation.Valid
 
 @RestController
 @RequestMapping("/admin/users")
-class UserController(private val userService: UserService) {
+class UserAdminController(private val userService: UserService) {
 
     @PostMapping("/create")
     fun createUser(@Valid @RequestBody userAdminDTO: UserAdminDTO): ResponseEntity<MessageResponseDTO>{
