@@ -4,6 +4,11 @@
       "name": "jwt.properties",
       "type": "com.romanidze.documenti.config.security.properties.JWTProperties",
       "sourceType": "com.romanidze.documenti.config.security.properties.JWTProperties"
+    },
+    {
+      "name": "files.properties",
+      "type": "com.romanidze.documenti.config.files.FilesProperties",
+      "sourceType": "com.romanidze.documenti.config.files.FilesProperties"
     }
   ],
   "properties": [
@@ -24,6 +29,18 @@
       "type": "java.lang.String",
       "description": "Срок годности JWT - токена (в секундах).",
       "sourceType": "com.romanidze.documenti.config.security.properties.JWTProperties"
+    },
+    {
+      "name": "files.properties.storage-path",
+      "type": "java.lang.String",
+      "description": "Папка хранения файлов проекта.",
+      "sourceType": "com.romanidze.documenti.config.files.FilesProperties"
+    },
+    {
+      "name": "files.properties.expiration",
+      "type": "java.lang.String",
+      "description": "Срок хранения файлов проекта.",
+      "sourceType": "com.romanidze.documenti.config.files.FilesProperties"
     }
   ]
 }

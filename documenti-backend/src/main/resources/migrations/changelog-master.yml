@@ -10,4 +10,7 @@ databaseChangeLog:
       file: /migrations/note/changelog-note.yml
 
   - include:
+      file: /migrations/files/changelog-files.yml
+
+  - include:
       file: /migrations/final/changelog-final.yml

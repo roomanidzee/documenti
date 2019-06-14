@@ -1,0 +1,69 @@
+databaseChangeLog:
+  - preConditions:
+      - runningAs:
+          username: documenti_user
+
+  - changeSet:
+
+      id: create_files_table
+      author: andrey_romanov
+
+      changes:
+
+        - createTable:
+
+            table_name: file_info
+
+            columns:
+
+              - column:
+
+                  - column:
+
+                      name: id
+
+                      type: int
+
+                      autoIncrement: true
+
+                      constraints:
+
+                        primaryKey: true
+
+                        nullable: false
+
+                  - column:
+
+                      name: original_name
+
+                      type: TEXT
+
+                  - column:
+
+                      name: encoded_name
+
+                      type: TEXT
+
+                  - column:
+
+                      name: file_size
+
+                      type: int
+
+                  - column:
+
+                      name: file_type
+
+                      type: TEXT
+
+                  - column:
+
+                      name: file_url
+
+                      type: TEXT
+
+                  - column:
+
+                      name: created_time
+
+                      type: TIMESTAMP

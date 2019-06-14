@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - preConditions:
+      - runningAs:
+          username: documenti_user
+
+  - include:
+      file: /migrations/files/create-files-models-1.yml

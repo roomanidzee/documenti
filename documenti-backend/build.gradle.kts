@@ -12,7 +12,8 @@ project.extra.set("versions", mapOf(
         "pdf-builder" to "1.3.0",
         "jjwt" to "0.9.1",
         "jaxb" to "2.3.1",
-        "swagger" to "2.9.2"
+        "swagger" to "2.9.2",
+        "commons-io" to "2.6"
 ))
 
 plugins {
@@ -85,6 +86,8 @@ dependencies {
 
     compile("io.springfox:springfox-swagger2:${versions["swagger"]}")
     compile("io.springfox:springfox-swagger-ui:${versions["swagger"]}")
+
+    compile("commons-io:commons-io:${versions["commons-io"]}")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.batch:spring-batch-test")

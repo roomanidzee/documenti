@@ -41,6 +41,13 @@ jwt:
     secret-key: fnreskjdfn4p3ithn3q[04tfraf
     expires-at: 600
 
+files:
+
+  properties:
+
+    storage-path: /home/andrey/temp
+    expiration: 1000000
+
 logging:
 
   config: classpath:logging/logback-spring.xml
