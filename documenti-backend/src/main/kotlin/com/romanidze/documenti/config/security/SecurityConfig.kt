@@ -45,6 +45,7 @@ class SecurityConfig(private val authenticationProvider: JWTTokenAuthenticationP
                 .authorizeRequests()
                 .antMatchers("/user/**", "/profile/**").hasAuthority("USER")
                 .antMatchers("/admin/**").hasAuthority("ADMIN")
+                .antMatchers("/files/**").hasAnyAuthority("USER", "ADMIN")
                 .antMatchers("/security/**").permitAll()
                 .antMatchers(*SWAGGER_URLS).permitAll()
                 .and()

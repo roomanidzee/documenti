@@ -38,4 +38,7 @@ interface FileInfoDBMapper {
     @Delete("DELETE FROM file_info WHERE id = #{id}")
     fun delete(@Param("id") id: Long)
 
+    @Select("SELECT * FROM file_info WHERE id = #{id}")
+    fun findByID(@Param("id") id: Long): FileInfo
+
 }
