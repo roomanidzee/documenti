@@ -5,3 +5,6 @@ databaseChangeLog:
 
   - include:
       file: /migrations/files/create-files-models-1.yml
+
+  - include:
+      file: /migrations/files/create-files-relations-2.yml

@@ -1,0 +1,162 @@
+databaseChangeLog:
+  - preConditions:
+      - runningAs:
+          username: documenti_user
+
+  - changeSet:
+
+      id: link_file_to_user
+      author: andrey_romanov
+
+      changes:
+
+        - createTable:
+
+            tableName: file_to_user
+
+            columns:
+
+              - column:
+
+                  name: id
+
+                  type: int
+
+                  autoIncrement: true
+
+                  constraints:
+
+                    primaryKey: true
+
+                    nullable: false
+
+              - column:
+
+                  name: file_id
+
+                  type: int
+
+              - column:
+
+                  name: user_id
+
+                  type: int
+
+              - addForeignKeyConstraint:
+
+                  baseColumnNames: user_id
+
+                  baseTableName: file_to_user
+
+                  constraintName: fk_user_linked
+
+                  deferrable: true
+
+                  initiallyDeferred: true
+
+                  onDelete: RESTRICT
+
+                  onUpdate: RESTRICT
+
+                  referencedColumnNames: id
+
+                  referencedTableName: users
+
+              - addForeignKeyConstraint:
+
+                  baseColumnNames: file_id
+
+                  baseTableName: file_to_user
+
+                  constraintName: fk_file_linked
+
+                  deferrable: true
+
+                  initiallyDeferred: true
+
+                  onDelete: RESTRICT
+
+                  onUpdate: RESTRICT
+
+                  referencedColumnNames: id
+
+                  referencedTableName: file_info
+
+  - changeSet:
+
+      id: link_file_to_note
+      author: andrey_romanov
+
+      changes:
+
+        - createTable:
+
+            tableName: file_to_note
+
+            columns:
+
+              - column:
+
+                  name: id
+
+                  type: int
+
+                  autoIncrement: true
+
+                  constraints:
+
+                    primaryKey: true
+
+                    nullable: false
+
+              - column:
+
+                  name: note_id
+
+                  type: int
+
+              - column:
+
+                  name: file_id
+
+                  type: int
+
+              - addForeignKeyConstraint:
+
+                  baseColumnNames: note_id
+
+                  baseTableName: file_to_note
+
+                  constraintName: fk_note_linked
+
+                  deferrable: true
+
+                  initiallyDeferred: true
+
+                  onDelete: RESTRICT
+
+                  onUpdate: RESTRICT
+
+                  referencedColumnNames: id
+
+                  referencedTableName: notes
+
+              - addForeignKeyConstraint:
+
+                  baseColumnNames: file_id
+
+                  baseTableName: file_to_note
+
+                  constraintName: fk_file_linked_to_note
+
+                  deferrable: true
+
+                  initiallyDeferred: true
+
+                  onDelete: RESTRICT
+
+                  onUpdate: RESTRICT
+
+                  referencedColumnNames: id
+
+                  referencedTableName: file_info

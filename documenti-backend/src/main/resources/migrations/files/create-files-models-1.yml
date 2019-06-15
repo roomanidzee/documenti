@@ -12,58 +12,56 @@ databaseChangeLog:
 
         - createTable:
 
-            table_name: file_info
+            tableName: file_info
 
             columns:
 
               - column:
 
-                  - column:
+                  name: id
 
-                      name: id
+                  type: int
 
-                      type: int
+                  autoIncrement: true
 
-                      autoIncrement: true
+                  constraints:
 
-                      constraints:
+                    primaryKey: true
 
-                        primaryKey: true
+                    nullable: false
 
-                        nullable: false
+              - column:
 
-                  - column:
+                  name: original_name
 
-                      name: original_name
+                  type: TEXT
 
-                      type: TEXT
+              - column:
 
-                  - column:
+                  name: encoded_name
 
-                      name: encoded_name
+                  type: TEXT
 
-                      type: TEXT
+              - column:
 
-                  - column:
+                  name: file_size
 
-                      name: file_size
+                  type: int
 
-                      type: int
+              - column:
 
-                  - column:
+                  name: file_type
 
-                      name: file_type
+                  type: TEXT
 
-                      type: TEXT
+              - column:
 
-                  - column:
+                  name: file_url
 
-                      name: file_url
+                  type: TEXT
 
-                      type: TEXT
+              - column:
 
-                  - column:
+                  name: created_time
 
-                      name: created_time
-
-                      type: TIMESTAMP
+                  type: TIMESTAMP
