@@ -13,7 +13,8 @@ project.extra.set("versions", mapOf(
         "jjwt" to "0.9.1",
         "jaxb" to "2.3.1",
         "swagger" to "2.9.2",
-        "commons-io" to "2.6"
+        "commons-io" to "2.6",
+        "commons-file-upload" to "1.4"
 ))
 
 plugins {
@@ -88,6 +89,7 @@ dependencies {
     compile("io.springfox:springfox-swagger-ui:${versions["swagger"]}")
 
     compile("commons-io:commons-io:${versions["commons-io"]}")
+    compile("commons-fileupload:commons-fileupload:${versions["commons-file-upload"]}")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.batch:spring-batch-test")

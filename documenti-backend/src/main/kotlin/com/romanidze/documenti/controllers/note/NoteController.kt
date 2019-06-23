@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController
 class NoteController(private val noteService: NoteService) {
 
     @GetMapping("/show")
-    fun getUserNotes(authentication: Authentication): ResponseEntity<List<NoteDTO>>{
+    fun getUserNotes(authentication: Authentication?): ResponseEntity<List<NoteDTO>>{
         return ResponseEntity.ok(this.noteService.retrieveUserNotes(authentication))
     }
 
