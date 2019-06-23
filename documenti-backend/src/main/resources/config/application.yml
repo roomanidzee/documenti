@@ -21,13 +21,19 @@ spring:
 
 
   liquibase:
+
     change-log: classpath:/migrations/changelog-master.yml
     database-change-log-lock-table: database_change_log_locking
     database-change-log-table: database_change_log
 
+  batch:
+
+    job:
+      enabled: false
+
 server:
 
-  port: 8080
+  port: 8000
 
   servlet:
 
@@ -46,7 +52,8 @@ files:
   properties:
 
     storage-path: /home/andrey/temp
-    expiration: 1000000
+    validation-file-path: /validations/files/validation-config.xml
+
 
 logging:
 

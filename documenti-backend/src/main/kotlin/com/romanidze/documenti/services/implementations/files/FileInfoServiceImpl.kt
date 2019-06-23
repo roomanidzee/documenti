@@ -31,6 +31,18 @@ class FileInfoServiceImpl(private val fileInfoMapper: FileInfoMapper,
                           private val fileToUserDBMapper: FileToUserDBMapper,
                           private val fileStorageComponent: FileStorageComponent): FileInfoService {
 
+    override fun removeFile(file: FileInfo) {
+
+        //TODO: сделать проверку файла
+
+        this.fileToNoteDBMapper.delete(file.id!!)
+        this.fileToUserDBMapper.delete(file.id!!)
+        this.fileInfoDBMapper.delete(file.id!!)
+
+        this.fileStorageComponent.removeFileFromStorage(file.fileURL!!)
+
+    }
+
     override fun saveFile(authentication: Authentication?, multipartFile: MultipartFile): FileInfoDTO {
 
         //TODO: сделать проверку пользователя и файла

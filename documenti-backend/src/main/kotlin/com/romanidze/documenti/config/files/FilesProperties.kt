@@ -8,6 +8,6 @@ import org.springframework.stereotype.Component
 class FilesProperties {
 
     lateinit var storagePath: String
-    lateinit var expiration: String
+    lateinit var validationFilePath: String
 
 }

@@ -9,7 +9,9 @@ import org.springframework.stereotype.Component
 import org.springframework.web.multipart.MultipartFile
 
 import java.nio.file.Files
+import java.nio.file.Path
 import java.nio.file.Paths
+
 import java.time.LocalDateTime
 import java.time.ZoneId
 
@@ -33,6 +35,11 @@ class FileStorageComponent(private val filesProperties: FilesProperties) {
 
     fun copyToStorage(file: MultipartFile, storageFileName: String){
         Files.copy(file.inputStream, Paths.get(filesProperties.storagePath, storageFileName))
+    }
+
+    fun removeFileFromStorage(fileURL: String){
+        val fileToDelete: Path = Paths.get(fileURL)
+        Files.delete(fileToDelete)
     }
 
     fun convertFromMultipart(file: MultipartFile): FileInfo {

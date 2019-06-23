@@ -37,9 +37,9 @@
       "sourceType": "com.romanidze.documenti.config.files.FilesProperties"
     },
     {
-      "name": "files.properties.expiration",
+      "name": "files.properties.validation-file-path",
       "type": "java.lang.String",
-      "description": "Срок хранения файлов проекта.",
+      "description": "Путь для файла с валидациями файлов проекта. Всегда в ресурсах! Обязательно.",
       "sourceType": "com.romanidze.documenti.config.files.FilesProperties"
     }
   ]

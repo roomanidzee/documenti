@@ -15,7 +15,7 @@ import javax.sql.DataSource
 class MyBatisConfig(private val datasource: DataSource) {
 
     @Bean
-    fun transactionManager(): DataSourceTransactionManager {
+    fun dbTransactionManager(): DataSourceTransactionManager {
         return DataSourceTransactionManager(this.datasource)
     }
 

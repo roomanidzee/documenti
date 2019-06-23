@@ -14,7 +14,8 @@ project.extra.set("versions", mapOf(
         "jaxb" to "2.3.1",
         "swagger" to "2.9.2",
         "commons-io" to "2.6",
-        "commons-file-upload" to "1.4"
+        "commons-file-upload" to "1.4",
+        "spring" to "5.1.7.RELEASE"
 ))
 
 plugins {
@@ -72,6 +73,7 @@ dependencies {
 
     compile("org.springframework.boot:spring-boot-configuration-processor")
     kapt("org.springframework.boot:spring-boot-configuration-processor")
+    compile("org.springframework:spring-oxm:${versions["spring"]}")
 
     compile("ch.qos.logback:logback-classic:${versions["logback"]}")
     compile("ch.qos.logback:logback-access:${versions["logback"]}")

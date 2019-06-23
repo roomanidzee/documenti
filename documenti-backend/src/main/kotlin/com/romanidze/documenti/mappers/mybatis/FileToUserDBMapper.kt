@@ -32,4 +32,7 @@ interface FileToUserDBMapper {
     @Delete("DELETE FROM file_to_user WHERE id = #{id}")
     fun delete(@Param("id") id: Long)
 
+    @Delete("DELETE FROM file_to_note WHERE file_id = #{id}")
+    fun deleteByFile(@Param("id") id: Long)
+
 }
