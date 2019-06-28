@@ -31,6 +31,8 @@ spring:
     job:
       enabled: false
 
+    initialize-schema: never
+
 server:
 
   port: 8000

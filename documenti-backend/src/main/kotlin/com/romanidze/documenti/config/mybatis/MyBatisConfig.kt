@@ -3,6 +3,7 @@ package com.romanidze.documenti.config.mybatis
 import org.apache.ibatis.session.SqlSessionFactory
 import org.mybatis.spring.SqlSessionFactoryBean
 import org.mybatis.spring.annotation.MapperScan
+import org.springframework.beans.factory.annotation.Qualifier
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -12,7 +13,7 @@ import javax.sql.DataSource
 
 @Configuration
 @MapperScan("com.romanidze.documenti.mappers.mybatis")
-class MyBatisConfig(private val datasource: DataSource) {
+class MyBatisConfig(@Qualifier("dataSource") private val datasource: DataSource) {
 
     @Bean
     fun dbTransactionManager(): DataSourceTransactionManager {
