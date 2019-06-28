@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - preConditions:
+      - runningAs:
+          username: documenti_user
+
+  - changeSet:
+
+      id: create_quartz_tables
+      author: andrey_romanov
+
+      changes:
+
+        - sqlFile:
+
+            dbms: postgresql
+
+            encoding: utf8
+
+            path: "quartz_init.sql"
+
+            relativeToChangelogFile: true

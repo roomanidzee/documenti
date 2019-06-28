@@ -1,31 +1,38 @@
 package com.romanidze.documenti.controllers.admin
 
-import com.romanidze.documenti.dto.utils.MessageResponseDTO
-import org.springframework.batch.core.Job
-import org.springframework.batch.core.JobParametersBuilder
-import org.springframework.batch.core.launch.JobLauncher
-import org.springframework.beans.factory.annotation.Qualifier
-import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.GetMapping
+import com.romanidze.documenti.dto.admin.JobRequestDTO
+import com.romanidze.documenti.dto.admin.JobResponseDTO
+import com.romanidze.documenti.services.interfaces.admin.JobSchedulerService
 
+import org.springframework.http.ResponseEntity
+import org.springframework.security.core.Authentication
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.PathVariable
 
 @RestController
-@RequestMapping("/admin")
-class JobLauncherController(private val jobLauncher: JobLauncher,
-                            @Qualifier("fileCheckingJob")
-                            private val job: Job) {
+@RequestMapping("/admin/jobs")
+class JobLauncherController(private val jobSchedulerService: JobSchedulerService) {
 
-    @GetMapping("/run-file-check")
-    fun runFileCheckJob(): ResponseEntity<MessageResponseDTO>{
+    @PostMapping("/start")
+    fun startJob(authentication: Authentication?,
+                 @RequestBody jobRequestDTO: JobRequestDTO): ResponseEntity<JobResponseDTO> {
+        return ResponseEntity.ok(this.jobSchedulerService.startJob(authentication, jobRequestDTO))
+    }
 
-        val parameters = JobParametersBuilder().addString("source", "admin")
-                                               .toJobParameters()
+    @PostMapping("/restart")
+    fun restartJob(authentication: Authentication?,
+                   @RequestBody jobRequestDTO: JobRequestDTO): ResponseEntity<JobResponseDTO>{
+        return ResponseEntity.ok(this.jobSchedulerService.restartJob(authentication, jobRequestDTO))
+    }
 
-        this.jobLauncher.run(job, parameters)
-
-        return ResponseEntity.ok(MessageResponseDTO(message = "Задача по проверке файлов запущена"))
+    @GetMapping("/stop/{job_name}")
+    fun stopJob(authentication: Authentication?,
+                @PathVariable("job_name") jobName: String): ResponseEntity<JobResponseDTO>{
+        return ResponseEntity.ok(this.jobSchedulerService.stopJob(authentication, jobName))
 
     }
 

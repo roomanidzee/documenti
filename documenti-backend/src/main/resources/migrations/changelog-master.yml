@@ -4,6 +4,9 @@ databaseChangeLog:
           username: documenti_user
 
   - include:
+      file: /migrations/quartz/changelog-quartz.yml
+
+  - include:
       file: /migrations/initial/changelog-initial.yml
 
   - include:
