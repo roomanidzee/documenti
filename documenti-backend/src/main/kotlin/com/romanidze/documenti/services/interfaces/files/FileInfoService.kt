@@ -14,5 +14,6 @@ interface FileInfoService {
     fun writeFileToResponse(fileID: Long, resp: HttpServletResponse)
     fun addFilesToNote(authentication: Authentication?, noteID: Long, files: Array<MultipartFile>)
     fun removeFile(file: FileInfo)
+    fun removeManyFiles(files: List<FileInfo>)
 
 }

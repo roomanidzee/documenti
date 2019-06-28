@@ -1,5 +1,6 @@
 package com.romanidze.documenti.mappers.mybatis
 
+import com.romanidze.documenti.config.mybatis.ExtendedLanguageDriver
 import com.romanidze.documenti.domain.postgres.FileInfo
 
 import org.apache.ibatis.annotations.Insert
@@ -11,6 +12,7 @@ import org.apache.ibatis.annotations.Options
 import org.apache.ibatis.annotations.Param
 import org.apache.ibatis.annotations.Results
 import org.apache.ibatis.annotations.Result
+import org.apache.ibatis.annotations.Lang
 
 @Mapper
 interface FileInfoDBMapper {
@@ -40,5 +42,9 @@ interface FileInfoDBMapper {
 
     @Select("SELECT * FROM file_info WHERE id = #{id}")
     fun findByID(@Param("id") id: Long): FileInfo
+
+    @Lang(ExtendedLanguageDriver::class)
+    @Delete("DELETE FROM file_info WHERE id IN (#{ids})")
+    fun deleteFilesByID(@Param("ids") ids: List<Long>)
 
 }

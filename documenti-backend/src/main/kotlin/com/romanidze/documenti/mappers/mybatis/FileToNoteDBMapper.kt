@@ -1,5 +1,6 @@
 package com.romanidze.documenti.mappers.mybatis
 
+import com.romanidze.documenti.config.mybatis.ExtendedLanguageDriver
 import com.romanidze.documenti.domain.postgres.FileToNote
 
 import org.apache.ibatis.annotations.Insert
@@ -11,6 +12,7 @@ import org.apache.ibatis.annotations.Options
 import org.apache.ibatis.annotations.Param
 import org.apache.ibatis.annotations.Results
 import org.apache.ibatis.annotations.Result
+import org.apache.ibatis.annotations.Lang
 
 @Mapper
 interface FileToNoteDBMapper {
@@ -34,5 +36,9 @@ interface FileToNoteDBMapper {
 
     @Delete("DELETE FROM file_to_note WHERE file_id = #{id}")
     fun deleteByFile(@Param("id") id: Long)
+
+    @Lang(ExtendedLanguageDriver::class)
+    @Delete("DELETE FROM file_to_note WHERE file_id IN (#{ids})")
+    fun deleteFilesByID(@Param("ids") ids: List<Long>)
 
 }

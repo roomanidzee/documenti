@@ -31,6 +31,8 @@ class FileCheckJob(private val filesProperties: FilesProperties,
         val logger: Logger = LogManager.getLogger(FileCheckJob::class)
     }
 
+    private val JOB_NAME = "file-check-job"
+
     @Bean(name = ["fileCheckingJob"])
     fun fileCheckJob(): Job{
 
@@ -41,22 +43,20 @@ class FileCheckJob(private val filesProperties: FilesProperties,
                                      .writer(this.fileCheckWriter)
                                      .build()
 
-        val job =  jobBuilderFactory.get("file-check-job")
-                                    .incrementer(RunIdIncrementer())
-                                    .listener(this)
-                                    .start(step)
-                                    .build()
-
-        return job
+        return jobBuilderFactory.get(JOB_NAME)
+                                .incrementer(RunIdIncrementer())
+                                .listener(this)
+                                .start(step)
+                                .build()
 
     }
 
     override fun beforeJob(jobExecution: JobExecution) {
-        logger.info("Периодическая задача под названием file-check-job начала выполняться")
+        logger.info("Периодическая задача под названием $JOB_NAME начала выполняться")
     }
 
     override fun afterJob(jobExecution: JobExecution) {
-        logger.info("Результат выполнения задачи под названием file-check-job " +
+        logger.info("Результат выполнения задачи под названием $JOB_NAME " +
                     "с ID = ${jobExecution.jobId}: ${jobExecution.status}")
     }
 

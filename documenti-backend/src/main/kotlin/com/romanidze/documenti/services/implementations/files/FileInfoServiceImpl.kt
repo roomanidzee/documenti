@@ -16,6 +16,8 @@ import org.apache.commons.io.IOUtils
 
 import org.springframework.security.core.Authentication
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Propagation
+import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.multipart.MultipartFile
 
 import java.io.File
@@ -31,15 +33,33 @@ class FileInfoServiceImpl(private val fileInfoMapper: FileInfoMapper,
                           private val fileToUserDBMapper: FileToUserDBMapper,
                           private val fileStorageComponent: FileStorageComponent): FileInfoService {
 
+    @Transactional(propagation = Propagation.REQUIRED)
     override fun removeFile(file: FileInfo) {
 
         //TODO: сделать проверку файла
 
-        this.fileToNoteDBMapper.delete(file.id!!)
-        this.fileToUserDBMapper.delete(file.id!!)
+        this.fileToNoteDBMapper.deleteByFile(file.id!!)
+        this.fileToUserDBMapper.deleteByFile(file.id!!)
         this.fileInfoDBMapper.delete(file.id!!)
 
         this.fileStorageComponent.removeFileFromStorage(file.fileURL!!)
+
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    override fun removeManyFiles(files: List<FileInfo>) {
+
+        val fileIDs = mutableListOf<Long>()
+
+        files.forEach { fileIDs += it.id!! }
+
+        this.fileToNoteDBMapper.deleteFilesByID(fileIDs)
+        this.fileToUserDBMapper.deleteFilesByID(fileIDs)
+        this.fileInfoDBMapper.deleteFilesByID(fileIDs)
+
+        files.forEach {
+            this.fileStorageComponent.removeFileFromStorage(it.fileURL!!)
+        }
 
     }
 

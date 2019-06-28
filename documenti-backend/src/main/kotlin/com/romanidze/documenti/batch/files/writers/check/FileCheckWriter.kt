@@ -15,7 +15,6 @@ import java.time.ZoneId
 class FileCheckWriter(private val fileInfoDBMapper: FileInfoDBMapper,
                       private val fileInfoService: FileInfoService): ItemWriter<FileValidationDTO> {
 
-    //TODO: оптимизировать
     override fun write(items: MutableList<out FileValidationDTO>) {
 
         val removableList = mutableListOf<FileInfo>()
@@ -36,9 +35,7 @@ class FileCheckWriter(private val fileInfoDBMapper: FileInfoDBMapper,
             }
         }
 
-        removableList.forEach {
-            this.fileInfoService.removeFile(it)
-        }
+        this.fileInfoService.removeManyFiles(removableList)
 
     }
 }
