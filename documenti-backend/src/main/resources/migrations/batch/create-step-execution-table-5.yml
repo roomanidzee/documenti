@@ -1,0 +1,153 @@
+databaseChangeLog:
+  - preConditions:
+      - runningAs:
+          username: documenti_user
+
+  - changeSet:
+
+      id: create_step_execution_table
+      author: andrey_romanov
+
+      changes:
+
+        - createTable:
+
+            tableName: batch_step_execution
+
+            columns:
+
+              - column:
+
+                  name: step_execution_id
+
+                  type: BIGINT
+
+                  constraints:
+
+                    primaryKey: true
+
+              - column:
+
+                  name: version
+
+                  type: BIGINT
+
+                  constraints:
+
+                    nullable: false
+
+              - column:
+
+                  name: step_name
+
+                  type: VARCHAR(100)
+
+                  constraints:
+
+                    nullable: false
+
+              - column:
+
+                  name: job_execution_id
+
+                  type: BIGINT
+
+                  constraints:
+
+                    nullable: false
+
+              - column:
+
+                  name: start_time
+
+                  type: DATETIME
+
+                  constraints:
+
+                    nullable: false
+
+              - column:
+
+                  name: end_time
+
+                  type: DATETIME
+
+              - column:
+
+                  name: status
+
+                  type: VARCHAR(10)
+
+              - column:
+
+                  name: commit_count
+
+                  type: BIGINT
+
+              - column:
+
+                  name: read_count
+
+                  type: BIGINT
+
+              - column:
+
+                  name: filter_count
+
+                  type: BIGINT
+
+              - column:
+
+                  name: write_count
+
+                  type: BIGINT
+
+              - column:
+
+                  name: read_skip_count
+
+                  type: BIGINT
+
+              - column:
+
+                  name: write_skip_count
+
+                  type: BIGINT
+
+              - column:
+
+                  name: process_skip_count
+
+                  type: BIGINT
+
+              - column:
+
+                  name: rollback_count
+
+                  type: BIGINT
+
+              - column:
+
+                  name: exit_code
+
+                  type: VARCHAR(20)
+
+              - column:
+
+                  name: exit_message
+
+                  type: VARCHAR(2500)
+
+              - column:
+
+                  name: last_updated
+
+                  type: DATETIME
+
+              - addForeignKeyConstraint:
+
+                  baseTableName: batch_step_execution
+                  baseColumnNames: job_execution_id
+                  constraintName: job_execution_step_fk
+                  referencedTableName: batch_job_execution
+                  referencedColumnNames: job_execution_id

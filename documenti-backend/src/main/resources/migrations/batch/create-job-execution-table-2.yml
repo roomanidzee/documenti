@@ -1,0 +1,103 @@
+databaseChangeLog:
+  - preConditions:
+      - runningAs:
+          username: documenti_user
+
+  - changeSet:
+
+      id: create_job_execution_table
+      author: andrey_romanov
+
+      changes:
+
+        - createTable:
+
+            tableName: batch_job_execution
+
+            columns:
+
+              - column:
+
+                  name: job_execution_id
+
+                  type: BIGINT
+
+                  constraints:
+
+                    primaryKey: true
+
+              - column:
+
+                  name: version
+
+                  type: BIGINT
+
+              - column:
+
+                  name: job_configuration_location
+
+                  type: VARCHAR(2000)
+
+              - column:
+
+                  name: job_instance_id
+
+                  type: BIGINT
+
+                  constraints:
+
+                    nullable: false
+
+              - column:
+
+                  name: create_time
+
+                  type: DATETIME
+
+                  constraints:
+
+                    nullable: false
+
+              - column:
+
+                  name: start_time
+
+                  type: DATETIME
+
+              - column:
+
+                  name: end_time
+
+                  type: DATETIME
+
+              - column:
+
+                  name: status
+
+                  type: VARCHAR(10)
+
+              - column:
+
+                  name: exit_code
+
+                  type: VARCHAR(20)
+
+              - column:
+
+                  name: exit_message
+
+                  type: VARCHAR(2500)
+
+              - column:
+
+                  name: last_updated
+
+                  type: DATETIME
+
+              - addForeignKeyConstraint:
+
+                  baseTableName: batch_job_execution
+                  baseColumnNames: job_instance_id
+                  constraintName: job_instance_execution_fk
+                  referencedTableName: batch_job_instance
+                  referencedColumnNames: job_instance_id

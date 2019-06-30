@@ -1,0 +1,61 @@
+databaseChangeLog:
+  - preConditions:
+      - runningAs:
+          username: documenti_user
+
+  - changeSet:
+
+      id: create_job_instance_table
+      author: andrey_romanov
+
+      changes:
+
+        - createSequence:
+
+            sequenceName: batch_step_execution_seq
+
+        - createSequence:
+
+            sequenceName: batch_job_execution_seq
+
+        - createSequence:
+
+            sequenceName: batch_job_seq
+
+        - createTable:
+
+            tableName: batch_job_instance
+
+            columns:
+
+              - column:
+
+                  name: job_instance_id
+
+                  type: BIGINT
+
+                  constraints:
+
+                    primaryKey: true
+
+              - columm:
+
+                  name: version
+
+                  type: BIGINT
+
+              - column:
+
+                  name: job_name
+
+                  type: VARCHAR(100)
+
+                  constraints:
+
+                    nullable: false
+
+              - column:
+
+                  name: job_key
+
+                  type: VARCHAR(2500)

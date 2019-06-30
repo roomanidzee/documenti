@@ -1,0 +1,51 @@
+databaseChangeLog:
+  - preConditions:
+      - runningAs:
+          username: documenti_user
+
+  - changeSet:
+
+      id: create_step_execution_context_table
+      author: andrey_romanov
+
+      changes:
+
+        - createTable:
+
+            tableName: batch_step_execution_context
+
+            columns:
+
+              - column:
+
+                  name: step_execution_id
+
+                  type: BIGINT
+
+                  constraints:
+
+                    primaryKey: true
+
+              - column:
+
+                  name: short_context
+
+                  type: VARCHAR(2500)
+
+                  constraints:
+
+                    nullable: false
+
+              - column:
+
+                  name: serialized_context
+
+                  type: CLOB
+
+              - addForeignKeyConstraint:
+
+                  baseTableName: batch_step_execution_context
+                  baseColumnNames: step_execution_id
+                  constraintName: step_exec_ctx_fk
+                  referencedTableName: batch_step_execution
+                  referencedColumnNames: step_execution_id

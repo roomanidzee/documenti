@@ -1,0 +1,51 @@
+databaseChangeLog:
+  - preConditions:
+      - runningAs:
+          username: documenti_user
+
+  - changeSet:
+
+      id: create_job_execution_context_table
+      author: andrey_romanov
+
+      changes:
+
+        - createTable:
+
+            tableName: batch_job_execution_context
+
+            columns:
+
+              - column:
+
+                  name: job_execution_id
+
+                  type: BIGINT
+
+                  constraints:
+
+                    primaryKey: true
+
+              - column:
+
+                  name: short_context
+
+                  type: VARCHAR(2500)
+
+                  constraints:
+
+                    nullable: false
+
+              - column:
+
+                  name: serialized_context
+
+                  type: CLOB
+
+              - addForeignKeyConstraint:
+
+                  baseTableName: batch_job_execution_context
+                  baseColumnNames: job_execution_id
+                  constraintName: job_exec_ctx_fk
+                  referencedTableName: batch_job_execution
+                  referencedColumnNames: job_execution_id

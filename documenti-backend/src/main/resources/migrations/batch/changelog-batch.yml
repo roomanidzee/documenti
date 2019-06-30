@@ -1,0 +1,22 @@
+databaseChangeLog:
+  - preConditions:
+      - runningAs:
+          username: documenti_user
+
+  - include:
+      file: /migrations/batch/create-job-instance-table-1.yml
+
+  - include:
+      file: /migrations/batch/create-job-execution-table-2.yml
+
+  - include:
+      file: /migrations/batch/create-job-execution-params-table-3.yml
+
+  - include:
+      file: /migrations/batch/create-job-execution-context-table-4.yml
+
+  - include:
+      file: /migrations/batch/create-step-execution-table-5.yml
+
+  - include:
+      file: /migrations/batch/create-step-execution-context-table-6.yml

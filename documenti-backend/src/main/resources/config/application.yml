@@ -11,6 +11,7 @@ spring:
     username: documenti_user
     password: documenti_pass
     type: com.zaxxer.hikari.HikariDataSource
+    platform: postgresql
 
     hikari:
 
@@ -33,6 +34,8 @@ spring:
       enabled: false
 
     initialize-schema: never
+
+    table-prefix: batch_
 
 server:
 

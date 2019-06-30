@@ -1,0 +1,85 @@
+databaseChangeLog:
+  - preConditions:
+      - runningAs:
+          username: documenti_user
+
+  - changeSet:
+
+      id: create_job_execution_params_table
+      author: andrey_romanov
+
+      changes:
+
+        - createTable:
+
+            tableName: batch_job_execution_params
+
+            columns:
+
+              - column:
+
+                  name: job_execution_id
+
+                  type: BIGINT
+
+                  constraints:
+
+                    nullable: false
+
+              - column:
+
+                  name: type_cd
+
+                  type: VARCHAR(6)
+
+              - column:
+
+                  name: key_name
+
+                  type: VARCHAR(100)
+
+                  constraints:
+
+                    nullable: false
+
+              - column:
+
+                  name: string_val
+
+                  type: VARCHAR(250)
+
+              - column:
+
+                  name: date_val
+
+                  type: DATETIME
+
+              - column:
+
+                  name: long_val
+
+                  type: BIGINT
+
+              - column:
+
+                  name: double_val
+
+                  type: DOUBLE PRECISION
+
+              - column:
+
+                  name: identifying
+
+                  type: VARCHAR(1)
+
+                  constraints:
+
+                    nullable: false
+
+              - addForeignKeyConstraint:
+
+                  baseTableName: batch_job_execution_params
+                  baseColumnNames: job_execution_id
+                  constraintName: job_exec_params_fk
+                  referencedTableName: batch_job_execution
+                  referencedColumnNames: job_execution_id

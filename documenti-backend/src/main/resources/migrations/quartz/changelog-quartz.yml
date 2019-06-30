@@ -1,7 +1,0 @@
-databaseChangeLog:
-  - preConditions:
-      - runningAs:
-          username: documenti_user
-
-  - include:
-      file: /migrations/quartz/create-quartz-tables-1.yml
