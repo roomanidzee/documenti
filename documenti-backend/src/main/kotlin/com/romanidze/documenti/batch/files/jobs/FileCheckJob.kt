@@ -6,15 +6,11 @@ import com.romanidze.documenti.batch.files.writers.check.FileCheckWriter
 import com.romanidze.documenti.config.files.FilesProperties
 import com.romanidze.documenti.dto.files.FileValidationDTO
 
-import org.apache.logging.log4j.LogManager
-import org.apache.logging.log4j.Logger
-
 import org.springframework.batch.core.Job
-import org.springframework.batch.core.JobExecution
+import org.springframework.batch.core.JobExecutionListener
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory
 import org.springframework.batch.core.launch.support.RunIdIncrementer
-import org.springframework.batch.core.listener.JobExecutionListenerSupport
 
 import org.springframework.context.annotation.Bean
 import org.springframework.core.io.ClassPathResource
@@ -25,11 +21,8 @@ class FileCheckJob(private val filesProperties: FilesProperties,
                    private val jobBuilderFactory: JobBuilderFactory,
                    private val stepBuilderFactory: StepBuilderFactory,
                    private val fileCheckProcessor: FileCheckProcessor,
-                   private val fileCheckWriter: FileCheckWriter): JobExecutionListenerSupport() {
-
-    companion object{
-        val logger: Logger = LogManager.getLogger(FileCheckJob::class)
-    }
+                   private val fileCheckWriter: FileCheckWriter,
+                   private val jobListener: JobExecutionListener){
 
     private val JOB_NAME = "file-check-job"
 
@@ -43,21 +36,13 @@ class FileCheckJob(private val filesProperties: FilesProperties,
                                      .writer(this.fileCheckWriter)
                                      .build()
 
+
+
         return jobBuilderFactory.get(JOB_NAME)
                                 .incrementer(RunIdIncrementer())
-                                .listener(this)
+                                .listener(this.jobListener)
                                 .start(step)
                                 .build()
 
     }
-
-    override fun beforeJob(jobExecution: JobExecution) {
-        logger.info("Периодическая задача под названием $JOB_NAME начала выполняться")
-    }
-
-    override fun afterJob(jobExecution: JobExecution) {
-        logger.info("Результат выполнения задачи под названием $JOB_NAME " +
-                    "с ID = ${jobExecution.jobId}: ${jobExecution.status}")
-    }
-
 }

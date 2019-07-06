@@ -10,6 +10,7 @@ import org.springframework.batch.core.configuration.JobLocator
 import org.springframework.batch.core.launch.JobLauncher
 
 import org.springframework.scheduling.quartz.QuartzJobBean
+import org.springframework.web.context.support.SpringBeanAutowiringSupport
 
 data class QuartzJobLauncher(val jobName: String, val jobLauncher: JobLauncher,
                              val jobLocator: JobLocator): QuartzJobBean() {
@@ -19,6 +20,8 @@ data class QuartzJobLauncher(val jobName: String, val jobLauncher: JobLauncher,
     }
 
     override fun executeInternal(context: JobExecutionContext) {
+
+        SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this)
 
         val job = this.jobLocator.getJob(jobName)
         val jobExecution = this.jobLauncher.run(job, JobParameters())

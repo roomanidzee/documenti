@@ -67,7 +67,7 @@ class JobSchedulerServiceImpl(@Qualifier("schedulerFactoryBean")
         if(jobDetail != null){
             this.scheduler.scheduleJob(trigger)
         }else{
-            this.scheduler.scheduleJob(jobDetail, trigger)
+            this.scheduler.scheduleJob(jobDetailImpl, trigger)
         }
 
         val cronExpression = CronExpression(jobRequestDTO.cronExpression)
