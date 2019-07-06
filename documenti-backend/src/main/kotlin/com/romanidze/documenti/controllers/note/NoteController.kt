@@ -1,5 +1,6 @@
 package com.romanidze.documenti.controllers.note
 
+import com.romanidze.documenti.dto.note.NoteCreationDTO
 import com.romanidze.documenti.dto.note.NoteDTO
 import com.romanidze.documenti.services.interfaces.note.NoteService
 
@@ -21,7 +22,7 @@ class NoteController(private val noteService: NoteService) {
     }
 
     @PostMapping("/create")
-    fun createNote(authentication: Authentication?, @RequestBody note: NoteDTO): ResponseEntity<NoteDTO> {
+    fun createNote(authentication: Authentication?, @RequestBody note: NoteCreationDTO): ResponseEntity<NoteDTO> {
         return ResponseEntity.ok(this.noteService.createNote(authentication, note))
     }
 
