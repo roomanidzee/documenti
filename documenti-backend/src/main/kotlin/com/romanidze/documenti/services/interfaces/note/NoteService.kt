@@ -6,5 +6,6 @@ import org.springframework.security.core.Authentication
 interface NoteService {
 
     fun retrieveUserNotes(authentication: Authentication?): List<NoteDTO>
+    fun createNote(authentication: Authentication?, note: NoteDTO): NoteDTO
 
 }
