@@ -1,4 +1,4 @@
-package com.romanidze.documenti.dto.admin
+package com.romanidze.documenti.dto.jobs
 
 import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonProperty

@@ -1,7 +1,7 @@
 package com.romanidze.documenti.services.interfaces.admin
 
-import com.romanidze.documenti.dto.admin.JobRequestDTO
-import com.romanidze.documenti.dto.admin.JobResponseDTO
+import com.romanidze.documenti.dto.jobs.JobRequestDTO
+import com.romanidze.documenti.dto.jobs.JobResponseDTO
 import org.springframework.security.core.Authentication
 
 interface JobSchedulerService {

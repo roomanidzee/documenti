@@ -1,6 +1,6 @@
 package com.romanidze.documenti.config.security.providers
 
-import com.romanidze.documenti.components.JWTComponent
+import com.romanidze.documenti.components.jwt.JWTComponent
 import com.romanidze.documenti.config.security.authentication.JWTTokenAuthentication
 import com.romanidze.documenti.config.security.details.UserDetailsImpl
 

@@ -35,8 +35,6 @@ spring:
 
     initialize-schema: never
 
-    table-prefix: batch_
-
 server:
 
   port: 8000

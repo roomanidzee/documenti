@@ -1,4 +1,4 @@
-package com.romanidze.documenti.components
+package com.romanidze.documenti.components.jwt
 
 import com.romanidze.documenti.config.security.authentication.JWTTokenAuthentication
 import com.romanidze.documenti.config.security.properties.JWTProperties

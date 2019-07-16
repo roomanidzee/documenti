@@ -1,6 +1,6 @@
 package com.romanidze.documenti.services.implementations.files
 
-import com.romanidze.documenti.components.FileStorageComponent
+import com.romanidze.documenti.components.files.FileStorageComponent
 import com.romanidze.documenti.domain.postgres.FileInfo
 import com.romanidze.documenti.domain.postgres.FileToNote
 import com.romanidze.documenti.domain.postgres.FileToUser

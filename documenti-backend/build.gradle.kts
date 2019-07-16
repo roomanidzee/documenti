@@ -27,6 +27,10 @@ plugins {
     kotlin("kapt") version "1.2.71"
 }
 
+tasks.bootJar {
+    archiveName = "app.jar"
+}
+
 val versions : Map<String, String> by project.extra
 
 group = "com.romanidze"
@@ -57,6 +61,9 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-websocket")
     implementation("org.springframework.boot:spring-boot-starter-jdbc")
+
+    implementation("org.springframework.boot:spring-boot-starter-aop")
+    kapt("org.springframework.boot:spring-boot-starter-aop")
 
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:${versions["jackson"]}")
 

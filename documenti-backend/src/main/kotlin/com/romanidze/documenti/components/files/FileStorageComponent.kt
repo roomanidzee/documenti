@@ -1,4 +1,4 @@
-package com.romanidze.documenti.components
+package com.romanidze.documenti.components.files
 
 import com.romanidze.documenti.config.files.FilesProperties
 import com.romanidze.documenti.domain.postgres.FileInfo
